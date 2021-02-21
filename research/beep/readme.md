@@ -24,3 +24,5 @@ The circuit is designed with [KiCAD](https://kicad.org/) and consists the ESP32 
 
 ## Sources
 - https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
+- https://github.com/r0oland/ESP32_mini_KiCad_Library
+- https://github.com/lbernstone/Tone32
