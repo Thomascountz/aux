@@ -22,7 +22,7 @@ I designed the monophonic gestures using beepbox.co/. It's a simple tool to quic
 The circuit is designed with [KiCAD](https://kicad.org/) and consists the ESP32 dev board, a passive piezoelectric buzzer, and a momentary tactile button switch.
 
 
-## Sources
+## Resources
 - https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
 - https://github.com/r0oland/ESP32_mini_KiCad_Library
 - https://github.com/lbernstone/Tone32
