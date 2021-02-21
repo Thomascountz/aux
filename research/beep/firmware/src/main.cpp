@@ -1,34 +1,33 @@
 #include <Arduino.h>
-#include <pitches.h>
+#include <gestures.h>
 
 const int buzzerPin = 0;
 const int buttonPin = 27;
-const int channel = 0;
-void gestureHello();
+const int pwmChannel = 0;
+bool buttonPressed = false;
+void handleButtonInterrupt();
 
 void setup() {
+  // Because we want to detect a "FALLING" change on the button, we use
+  // the ESP32's internal pullup resistors
   pinMode(buttonPin, INPUT_PULLUP);
+  attachInterrupt(buttonPin, handleButtonInterrupt, FALLING);
   Serial.begin(115200);
 }
 
 void loop() {
-  bool buttonState = digitalRead(buttonPin);
-  if (buttonState == LOW) {
-    gestureHello();
+  // We use a state variable to ensure that the ISR (interrupt service routine), 
+  // the function handling the interrupt, executes as quickly as possible.
+  if (buttonPressed == true)
+  {
+    Serial.println("interrupt triggered.");
+    gestureHello(buzzerPin, pwmChannel);
+    buttonPressed = false;
   }
 }
- 
- void gestureHello() {
-   Serial.println("triggered");
-   ledcAttachPin(buzzerPin, channel);
-   ledcWriteTone(channel, NOTE_C6);
-   delay(100);
-   ledcWriteTone(channel, NOTE_D6);
-   delay(100);
-   ledcWriteTone(channel, NOTE_G6);
-   delay(100);
-   ledcWriteTone(channel, NOTE_E6);
-   delay(100);
-   ledcDetachPin(buzzerPin);
-   ledcWrite(channel, 0);
- }
+
+// IRAM_ATTR puts the function in Internal RAM (IRAM) as opposed to flash, which
+// is much faster.
+void IRAM_ATTR handleButtonInterrupt() {
+  buttonPressed = true;
+}
