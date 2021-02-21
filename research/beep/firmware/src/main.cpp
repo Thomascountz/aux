@@ -8,6 +8,7 @@ void gestureHello();
 
 void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -18,7 +19,7 @@ void loop() {
 }
  
  void gestureHello() {
-   Serial.print("triggered");
+   Serial.println("triggered");
    ledcAttachPin(buzzerPin, channel);
    ledcWriteTone(channel, NOTE_C6);
    delay(100);

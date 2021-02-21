@@ -1,0 +1,147 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "2021-02-20"
+Rev "1"
+Comp "Countz Research"
+Comment1 ""
+Comment2 ""
+Comment3 "New York City"
+Comment4 "Thomas Countz"
+$EndDescr
+$Comp
+L ESP32_mini:mini_esp32 U1
+U 1 1 60319988
+P 5600 2150
+F 0 "U1" H 5625 2275 50  0000 C CNN
+F 1 "mini_esp32" H 5625 2184 50  0000 C CNN
+F 2 "ESP32_mini:ESP32_mini" H 5750 2250 50  0001 C CNN
+F 3 "" H 5750 2250 50  0001 C CNN
+	1    5600 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 6031E1B8
+P 4600 4150
+F 0 "SW1" H 4600 4435 50  0000 C CNN
+F 1 "SW_Push" H 4600 4344 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_Omron_B3FS-100xP" H 4600 4350 50  0001 C CNN
+F 3 "~" H 4600 4350 50  0001 C CNN
+	1    4600 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 603248EB
+P 4850 2450
+F 0 "#PWR0101" H 4850 2200 50  0001 C CNN
+F 1 "GND" H 4855 2277 50  0000 C CNN
+F 2 "" H 4850 2450 50  0001 C CNN
+F 3 "" H 4850 2450 50  0001 C CNN
+	1    4850 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 60326839
+P 6450 2450
+F 0 "#PWR0102" H 6450 2200 50  0001 C CNN
+F 1 "GND" H 6455 2277 50  0000 C CNN
+F 2 "" H 6450 2450 50  0001 C CNN
+F 3 "" H 6450 2450 50  0001 C CNN
+	1    6450 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 2450 6250 2450
+Wire Wire Line
+	6150 2550 6250 2550
+Wire Wire Line
+	6250 2550 6250 2450
+Connection ~ 6250 2450
+Wire Wire Line
+	6250 2450 6450 2450
+$Comp
+L power:+5V #PWR0103
+U 1 1 603286E9
+P 6250 2250
+F 0 "#PWR0103" H 6250 2100 50  0001 C CNN
+F 1 "+5V" H 6265 2423 50  0000 C CNN
+F 2 "" H 6250 2250 50  0001 C CNN
+F 3 "" H 6250 2250 50  0001 C CNN
+	1    6250 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 60329292
+P 4250 4150
+F 0 "#PWR0104" H 4250 3900 50  0001 C CNN
+F 1 "GND" H 4255 3977 50  0000 C CNN
+F 2 "" H 4250 4150 50  0001 C CNN
+F 3 "" H 4250 4150 50  0001 C CNN
+	1    4250 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Buzzer BZ1
+U 1 1 6031B957
+P 4750 2350
+F 0 "BZ1" H 4902 2379 50  0000 L CNN
+F 1 "Buzzer" H 4902 2288 50  0000 L CNN
+F 2 "Buzzer_Beeper:Buzzer_12x9.5RM7.6" V 4725 2450 50  0001 C CNN
+F 3 "~" V 4725 2450 50  0001 C CNN
+	1    4750 2350
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 2250 5100 2250
+Wire Wire Line
+	4800 4150 5100 4150
+NoConn ~ 5100 2350
+NoConn ~ 5100 2450
+NoConn ~ 5100 2550
+NoConn ~ 5100 2650
+NoConn ~ 5100 2750
+NoConn ~ 5100 2850
+NoConn ~ 5100 2950
+NoConn ~ 5100 3050
+NoConn ~ 5100 3150
+NoConn ~ 5100 3250
+NoConn ~ 5100 3350
+NoConn ~ 5100 3450
+NoConn ~ 5100 3550
+NoConn ~ 5100 3650
+NoConn ~ 5100 3750
+NoConn ~ 5100 3850
+NoConn ~ 5100 3950
+NoConn ~ 5100 4050
+NoConn ~ 5100 4250
+NoConn ~ 5100 4350
+NoConn ~ 5100 4450
+NoConn ~ 5100 4550
+NoConn ~ 5100 4650
+NoConn ~ 6150 2350
+NoConn ~ 6150 2750
+NoConn ~ 6150 3250
+NoConn ~ 6150 3350
+NoConn ~ 6150 3450
+NoConn ~ 6150 3550
+NoConn ~ 6150 3650
+NoConn ~ 6150 3750
+NoConn ~ 6150 3850
+Wire Wire Line
+	6150 2650 6250 2650
+Wire Wire Line
+	6250 2650 6250 2550
+Connection ~ 6250 2550
+Wire Wire Line
+	6150 2250 6250 2250
+Wire Wire Line
+	4250 4150 4400 4150
+$EndSCHEMATC
