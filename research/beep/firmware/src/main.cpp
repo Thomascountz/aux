@@ -21,7 +21,7 @@ void loop() {
   if (buttonPressed == true)
   {
     Serial.println("interrupt triggered.");
-    gestureHello(buzzerPin, pwmChannel);
+    gestureHello2(buzzerPin, pwmChannel);
     buttonPressed = false;
   }
 }

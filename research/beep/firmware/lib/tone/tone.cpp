@@ -3,7 +3,7 @@
 
 #include <tone.h>
 
-void tone(uint8_t pin, uint8_t frequency, ulong duration, uint8_t channel) {
+void tone(uint8_t pin, uint8_t frequency, uint8_t channel, uint8_t duration) {
     if (ledcRead(channel)) {
         return;
     }
