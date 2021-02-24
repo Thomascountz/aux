@@ -8,6 +8,5 @@ This MQTT prototype is written in Arduino-compatible C++ using the [PlatformIO I
 This prototype doesn't require a schematic. The onboard `BUILTIN_LED` is toggled via an MQTT topic.
 
 ## Resources
-- https://github.com/adafruit/Adafruit_Si7021
-- https://learn.adafruit.com/adafruit-si7021-temperature-plus-humidity-sensor
-- https://learn.sparkfun.com/tutorials/si7021-humidity-and-temperature-sensor-hookup-guide
+- https://support.asplhosting.com/t/connecting-with-pubsubclient-with-myqtthub-arduino-client-for-mqtt/278
+- https://learn.sparkfun.com/tutorials/introduction-to-mqtt/all
