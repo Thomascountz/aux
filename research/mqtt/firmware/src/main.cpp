@@ -3,12 +3,12 @@
 #include <PubSubClient.h>
 
 void callback(char* topic, byte* payload, unsigned int length);
-const char* ssid = "***REMOVED***";
-const char* password = "***REMOVED***";
-const char* mqtt_server = "***REMOVED***";
-const char* client_name = "proto";
-const char* client_user = "proto1";
-const char* client_pass = "proto1";
+const char* ssid = "REDACTED";
+const char* password = "REDACTED";
+const char* mqtt_server = "REDACTED";
+const char* client_name = "REDACTED";
+const char* client_user = "REDACTED";
+const char* client_pass = "REDACTED";
 
 WiFiClient espClient;
 PubSubClient client(mqtt_server, 1883, callback, espClient);

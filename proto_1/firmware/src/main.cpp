@@ -13,8 +13,8 @@ const int pwmChannel = 0;
 const int buzzerPin = 26;
 
 // WIFI
-const char* ssid = "***REMOVED***";
-const char* password = "***REMOVED***";
+const char* ssid = "REDACTED";
+const char* password = "REDACTED";
 
 // MQTT Settings
 void mqttHandler(char* topic, byte* payload, unsigned int length);
@@ -22,7 +22,7 @@ void gestureHello();
 const char* mqtt_broker_address = "io.adafruit.com";
 const char* client_id = "proto_1";
 const char* client_user = "thomascountz";
-const char* client_password = "***REMOVED***";
+const char* client_password = "REDACTED";
 const int port = 1883;
 WiFiClient wifi_client = WiFiClient();
 PubSubClient client(mqtt_broker_address, port, mqttHandler, wifi_client);
