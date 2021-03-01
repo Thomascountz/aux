@@ -1,0 +1,2 @@
+void OTABegin();
+void OTAHandle();
