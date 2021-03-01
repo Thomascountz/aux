@@ -2,8 +2,8 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <Adafruit_Si7021.h>
-#include <Adafruit_CCS811.h>
 #include <secrets.h>
+#include <OTA.h>
 
 // consts
 const long thirty_seconds = 30000;
@@ -30,28 +30,18 @@ PubSubClient client(mqtt_broker_address, port, mqttHandler, wifi_client);
 
 const char *temperature_topic = "thomascountz/feeds/proto-1.temperature";
 const char *humidity_topic = "thomascountz/feeds/proto-1.humidity";
-const char *co2_topic = "thomascountz/feeds/proto-1.co2";
-const char *voc_topic = "thomascountz/feeds/proto-1.voc";
 const char *beep_topic = "thomascountz/feeds/proto-1.beep";
 const char *did_beep_topic = "thomascountz/feeds/proto-1.did-beep";
 const char *heartbeat_topic = "thomascountz/feeds/proto-1.heartbeat";
-const char *error_topic = "thomascountz/feeds/proto-1.error";
+const char *diagnostics_topic = "thomascountz/feeds/proto-1.diagnostics";
 
 char temperature_buffer[8];
 char humidity_buffer[8];
-char co2_buffer[8];
-char voc_buffer[8];
 
 // Temp & Humidity
 Adafruit_Si7021 temp_sensor = Adafruit_Si7021();
 float temperature;
 float humidity;
-
-// CO2 & VOC
-Adafruit_CCS811 air_sensor = Adafruit_CCS811();
-;
-float co2;
-float voc;
 
 void mqttHandler(char *topic, byte *payload, unsigned int length) {
 #ifdef DEBUG
@@ -99,22 +89,12 @@ void setup() {
       ;
   }
 
-// Initiate CO2/VOC sensor
-#ifdef DEBUG
-  Serial.println("Initiating CO2 & VOC sensor");
-#endif
-  if (!air_sensor.begin()) {
-    while (true)
-      ;
-  }
-
 // Connect to WiFi
 #ifdef DEBUG
   Serial.println("Connecting to WiFi.");
 #endif
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED)
-  {
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
 #ifdef DEBUG
     Serial.print(".");
@@ -130,8 +110,7 @@ void setup() {
 #ifdef DEBUG
   Serial.println("Connecting to MQTT broker.");
 #endif
-  if (client.connect(client_id, client_user, client_password))
-  {
+  if (client.connect(client_id, client_user, client_password)) {
 #ifdef DEBUG
     Serial.println("Connected to MQTT broker.");
 #endif
@@ -139,9 +118,15 @@ void setup() {
     client.subscribe(beep_topic);
     gestureHello();
   }
+  
+  // OTA
+  OTABegin();
 }
 
 void loop() {
+  //OTA
+  OTAHandle();
+
   // Are we still connected to the MQTT broker?
   if (!client.connected()) {
     while (!client.connected()) {
@@ -168,50 +153,26 @@ void loop() {
 
   unsigned long now = millis();
   if (now - last_message_at > thirty_seconds) {
+    last_message_at = now;
     temperature = temp_sensor.readTemperature();
     humidity = temp_sensor.readHumidity();
-    if (air_sensor.available()) {
-      air_sensor.setEnvironmentalData(humidity, temperature);
-      if (!air_sensor.readData()) {
-        last_message_at = now;
-
-        co2 = air_sensor.geteCO2();
-        voc = air_sensor.getTVOC();
 
 #ifdef DEBUG
-        Serial.println();
+    Serial.println();
 #endif
 
-        dtostrf(temperature, 6, 2, temperature_buffer);
-        client.publish(temperature_topic, temperature_buffer);
+    dtostrf(temperature, 6, 2, temperature_buffer);
+    client.publish(temperature_topic, temperature_buffer);
 #ifdef DEBUG
-        Serial.print("temperature: ");
-        Serial.print(temperature_buffer);
+    Serial.print("temperature: ");
+    Serial.print(temperature_buffer);
 #endif
 
-        dtostrf(humidity, 6, 2, humidity_buffer);
-        client.publish(humidity_topic, humidity_buffer);
+    dtostrf(humidity, 6, 2, humidity_buffer);
+    client.publish(humidity_topic, humidity_buffer);
 #ifdef DEBUG
-        Serial.print(" humidity: ");
-        Serial.print(humidity_buffer);
+    Serial.print(" humidity: ");
+    Serial.print(humidity_buffer);
 #endif
-
-        dtostrf(co2, 6, 2, co2_buffer);
-        client.publish(co2_topic, co2_buffer);
-#ifdef DEBUG
-        Serial.print(" CO2: ");
-        Serial.print(co2_buffer);
-#endif
-
-        dtostrf(voc, 6, 2, voc_buffer);
-        client.publish(voc_topic, voc_buffer);
-
-#ifdef DEBUG
-        Serial.print(" VOC: ");
-        Serial.print(voc_buffer);
-        Serial.println();
-#endif
-      }
-    }
   }
 }
