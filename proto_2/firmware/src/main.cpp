@@ -160,7 +160,7 @@ void loop() {
   Serial.print(",");
   Serial.print(gy);
   Serial.print(",");
-  Serial.println(gz);
+  Serial.println(gz;
 
   display.println("Accelerometer - m/s^2");
   display.print(ax);
