@@ -21,6 +21,10 @@ F 0 "U1" H 6000 3700 50  0000 L CNN
 F 1 "7555" H 5950 3800 50  0000 L CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 6200 3200 50  0001 C CNN
 F 3 "" H 6200 3200 50  0001 C CNN
+F 4 "X" H 6050 3750 50  0001 C CNN "Spice_Primitive"
+F 5 "NE555" H 6050 3750 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 6050 3750 50  0001 C CNN "Spice_Netlist_Enabled"
+F 7 "/Users/thomascountz/Documents/Projects/Personal/KiCad-Spice-Library/Models/uncategorized/Bordodynovs Electronics Lib/sub/NE555.sub" H 6050 3750 50  0001 C CNN "Spice_Lib_File"
 	1    6050 3750
 	1    0    0    -1  
 $EndComp
@@ -54,6 +58,10 @@ F 0 "D1" V 6789 4332 50  0000 R CNN
 F 1 "LED" V 6698 4332 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6750 4450 50  0001 C CNN
 F 3 "~" H 6750 4450 50  0001 C CNN
+F 4 "D" H 6750 4450 50  0001 C CNN "Spice_Primitive"
+F 5 "LED_GENERAL" H 6750 4450 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 6750 4450 50  0001 C CNN "Spice_Netlist_Enabled"
+F 7 "/Users/thomascountz/Documents/Projects/Personal/KiCad-Spice-Library/Models/Diode/led.lib" H 6750 4450 50  0001 C CNN "Spice_Lib_File"
 	1    6750 4450
 	0    -1   -1   0   
 $EndComp
@@ -65,6 +73,9 @@ F 0 "BT1" H 4668 4046 50  0000 L CNN
 F 1 "CR2032" H 4668 3955 50  0000 L CNN
 F 2 "getting_to_blinky:S8211-46R" V 4550 4010 50  0001 C CNN
 F 3 "~" V 4550 4010 50  0001 C CNN
+F 4 "V" H 4550 3950 50  0001 C CNN "Spice_Primitive"
+F 5 "dc 5" H 4550 3950 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 4550 3950 50  0001 C CNN "Spice_Netlist_Enabled"
 	1    4550 3950
 	1    0    0    -1  
 $EndComp
@@ -190,6 +201,4 @@ Wire Wire Line
 Wire Wire Line
 	5150 4700 5650 4700
 NoConn ~ 6150 4300
-Text Label 5350 3100 0    50   ~ 0
-VDD
 $EndSCHEMATC
